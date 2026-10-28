@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umbra and Reddit data</title>
+<meta name="description" content="How Umbra, a personal AI assistant in private beta, uses Reddit's Data API: read-only, on request, with links back.">
+<style>
+  :root { --bg: #fbfaf7; --text: #1d1c1a; --muted: #5e5b55; --line: #e4e1da; --accent: #b4441f; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #161513; --text: #ecebe7; --muted: #a8a49c; --line: #2e2c28; --accent: #f08a5d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 44rem; margin: 0 auto; padding: 3rem 1rem 4rem; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .5rem; }
+  h2 { font-size: 1.15rem; margin: 2.2rem 0 .6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+  p, li { color: var(--text); }
+  .lede { color: var(--muted); font-size: 1.05rem; margin: 0 0 1.5rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: .35rem 0; }
+  .example { border-left: 3px solid var(--accent); padding: .6rem 1rem; margin: 1rem 0; color: var(--muted); }
+  a { color: var(--accent); }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Umbra and Reddit data</h1>
+  <p class="lede">Umbra is a personal AI assistant, currently in private beta. This page explains exactly how it uses Reddit's Data API.</p>
+
+  <h2>What Umbra does with Reddit</h2>
+  <p>When a user asks a question that Reddit communities answer best, Umbra reads a few relevant public threads, summarizes the main points for that user, and links every point back to the original thread on reddit.com, so the user can read the full discussion and take part in it.</p>
+  <div class="example">Example: "What standing desk under $500 do people recommend?" → Umbra searches r/StandingDesk and r/BuyItForLife, reads three threads, and answers with the desks people recommend and the complaints they raise, each with a link to its thread.</div>
+
+  <h2>How it uses the API</h2>
+  <ul>
+    <li><strong>Read-only.</strong> Search within a subreddit, top or new listings, and a thread with its comments. Nothing else.</li>
+    <li><strong>Only when a user asks.</strong> No crawling, no bulk downloads, no background collection.</li>
+    <li><strong>Low volume.</strong> About 200 requests a day at launch, under 10 a minute at peak, over OAuth with a descriptive User-Agent.</li>
+    <li><strong>Public content only.</strong> No private, quarantined or NSFW-gated content.</li>
+  </ul>
+
+  <h2>What Umbra never does</h2>
+  <ul>
+    <li>Post, comment, vote or send messages.</li>
+    <li>Train AI models on Reddit data, or sell, license or share it.</li>
+    <li>Build profiles of Reddit users.</li>
+    <li>Get around Reddit's access controls. When Reddit blocks automated reading, Umbra tells the user plainly and uses other sources. It does not use mirrors, archives, proxies or scraping services, and it never solves bot checks itself.</li>
+  </ul>
+
+  <h2>Data handling</h2>
+  <ul>
+    <li>Umbra sends Reddit only the subreddit and search terms needed. No user identity, email or account data.</li>
+    <li>Content is fetched live when the user asks, so removed posts don't appear in new answers.</li>
+    <li>Reddit content is kept only inside that user's task, which the user can delete at any time.</li>
+    <li>Nothing from Reddit is passed to third parties.</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>Jean-Luc Ohayon, founder · <a href="mailto:jeanlucohayon23@gmail.com">jeanlucohayon23@gmail.com</a> · Reddit: u/Drip_Dept</p>
+
+  <footer>Umbra is a working name. Updated October 2026.</footer>
+</main>
+</body>
+</html>
